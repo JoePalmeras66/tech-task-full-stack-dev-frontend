@@ -1,0 +1,20 @@
+.tableWrapper {
+    border-spacing: 0;
+    border: 1px solid black;
+    border-collapse: collapse;
+    width: 100%;
+  
+    tr:nth-child(2n) {
+      background-color: #fafafa;
+    }
+  
+    th {
+      padding: 15px;
+      align-content: left;
+      text-align: left;
+    }
+  
+    td {
+      padding: 5px 10px;
+    }
+  }

@@ -1,0 +1,12 @@
+@use "react-widgets/styles.scss" with (
+  $components: (
+    'DropdownList',
+    //'Listbox',
+    //'Combobox',
+    //'Multiselect',
+    //'DatePicker',
+    //'Calendar',
+    //'TimeInput',
+    //'NumberPicker'
+  )
+);
