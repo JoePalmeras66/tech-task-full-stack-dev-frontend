@@ -1,9 +1,10 @@
-# Getting Started with Create React App
+# Tech Task D3 Cloud: Frontend
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+Small React Frontend to REST-API https://github.com/JoePalmeras66/tech-task-full-stack-dev-backend
 
-### Geeting Started
+### Getting Started
 
 `yarn create react-app tech-task-full-stack-dev-frontend --template typescript`
 
