@@ -3,7 +3,7 @@ import { useQuery } from "react-query";
 import { Column } from "react-table";
 import { BasicReactTableProps } from "../Types/BasicReactTableProps";
 import { IRandomUser } from "../Types/RandomUserTypes";
-import BasicReactTable from "./BasicReactTable";
+import BasicReactTable from "./table/BasicReactTable";
 
 const columns: readonly Column<IRandomUser>[] = [
   {

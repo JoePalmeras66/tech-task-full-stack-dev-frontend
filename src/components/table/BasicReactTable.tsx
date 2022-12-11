@@ -1,5 +1,5 @@
 import { useTable } from 'react-table'
-import { BasicReactTableProps } from '../Types/BasicReactTableProps';
+import { BasicReactTableProps } from '../../Types/BasicReactTableProps';
 
 const BasicReactTable = <TDataType extends object>(props: BasicReactTableProps<TDataType>) => {
     const table = useTable<TDataType>({...props});
