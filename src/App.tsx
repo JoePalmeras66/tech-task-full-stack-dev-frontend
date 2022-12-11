@@ -1,26 +1,33 @@
-import { useEffect } from "react";
 import { useState } from "react";
+import { useQuery } from "react-query";
 import { DropdownList } from "react-widgets";
 import RandomUser from "./components/RandomUser";
 
 import "react-widgets/scss/styles.scss";
 
+const fetchLocations = async () => {
+  const response = await fetch(
+    `http://localhost:8080/locations`
+  );
+  if (!response.ok) {
+    throw new Error("Problem fetching all locations");
+  }
+  const locations: string[] = await response.json();
+  return locations;
+};
+
 const App = () => {
   const [value, setValue] = useState<string>("");
-  const [data, setData] = useState<string[]>([]);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const response = await fetch(
-        `http://localhost:8080/locations`
-      );
-      const newData = await response.json();
-      setData(newData);
-    };
+  const { status, error, data } = useQuery<string[], Error>(
+    ["locations"],
+    () => fetchLocations()
+  );
 
-    fetchData();
-  }, []);
-  
+  if (status === "loading") return <div>Loading ...</div>;
+  if (status === "error") return <div>{error!.message}</div>;
+  if (data === undefined) return <div>Locations undefined!!!</div>
+ 
   return (
     <>
         <DropdownList
