@@ -41,12 +41,14 @@ const RandomUser = (props: {country: string}) => {
     []
   );
 
-  const { data } = useQuery<IRandomUser[], Error>(
+  const { status, error, data } = useQuery<IRandomUser[], Error>(
     ["randomUsers", { country: props.country }],
     () => fetchRandomUsers({country: props.country})
   );
 
-  if(data === undefined) return <div>RandomUsers undefined!!!</div>
+  if (status === "loading") return <div>Loading ...</div>;
+  if (status === "error") return <div>{error!.message}</div>;
+  if (data === undefined) return <div>RandomUsers undefined!!!</div>
 
   return (
     <>

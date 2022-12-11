@@ -19,12 +19,14 @@ const fetchLocations = async () => {
 const App = () => {
   const [value, setValue] = useState<string>("");
 
-  const { data } = useQuery<string[], Error>(
+  const { status, error, data } = useQuery<string[], Error>(
     ["locations"],
     () => fetchLocations()
   );
 
-  if(data === undefined) return <div>Locations undefined!!!</div>
+  if (status === "loading") return <div>Loading ...</div>;
+  if (status === "error") return <div>{error!.message}</div>;
+  if (data === undefined) return <div>Locations undefined!!!</div>
  
   return (
     <>
