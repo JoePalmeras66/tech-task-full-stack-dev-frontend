@@ -3,25 +3,16 @@ import { useQuery } from "react-query";
 import { DropdownList } from "react-widgets";
 import RandomUser from "./components/RandomUser";
 
+import { fetchAllLocations } from "./services/location-service";
+
 import "react-widgets/scss/styles.scss";
 
-const fetchLocations = async () => {
-  const response = await fetch(
-    `http://localhost:8080/locations`
-  );
-  if (!response.ok) {
-    throw new Error("Problem fetching all locations");
-  }
-  const locations: string[] = await response.json();
-  return locations;
-};
-
 const App = () => {
-  const [value, setValue] = useState<string>("");
+  const [value, setValue] = useState<string>("Germany");
 
   const { status, error, data } = useQuery<string[], Error>(
     ["locations"],
-    () => fetchLocations()
+    () => fetchAllLocations()
   );
 
   if (status === "loading") return <div>Loading ...</div>;
@@ -31,7 +22,6 @@ const App = () => {
   return (
     <>
         <DropdownList
-          defaultValue="Germany"
           value={value}
           onChange={value => setValue(value)}
           data={data}
