@@ -1,4 +1,5 @@
-import { useEffect, useMemo, useState } from "react";
+import { useMemo } from "react";
+import { useQuery } from "react-query";
 import { Column } from "react-table";
 import { IRandomUser } from "../Types/RandomUserTypes";
 
@@ -23,32 +24,37 @@ const columns: Column<IRandomUser>[] = [
   },
 ]
 
-type RandomUserProps = {
-  country: string;
+const fetchRandomUsers = async (props: {country: string}): Promise<IRandomUser[]> => {
+  const response = await fetch(
+    `http://localhost:8080/randomusers?country=${props.country}`
+  );
+  if (!response.ok) {
+    throw new Error("Problem fetching 'IRandomUser[]'");
+  }
+  const randomUsers: IRandomUser[] = await response.json();
+  return randomUsers;
 };
 
-const RandomUser = (props: RandomUserProps) => {
-  const [data, setData] = useState<IRandomUser[]>([]);
-
+const RandomUser = (props: {country: string}) => {
   const columns_ = useMemo<Column<IRandomUser>[]>(
     () => columns,
     []
   );
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const response = await fetch(
-        `http://localhost:8080/randomusers?country=${props.country}`
-      );
-      const newData = await response.json();
-      setData(newData);
-    };
+  const { status, error, data, refetch } = useQuery<IRandomUser[], Error>(
+    ["randomUsers", { country: props.country }],
+    () => fetchRandomUsers({country: props.country})
+  );
 
-    fetchData();
-  }, [props.country]);
+  if (status === "loading") return <div>Loading ...</div>;
+  if (status === "error") return <div>{error!.message}</div>;
+  if (data === undefined) return <div>RandomUsers undefined!!!</div>
+
+  const refetchData = () => refetch;
 
   return (
     <>
+      <button onClick={refetchData}>Refetch</button>
       <RandomUserTable
         columns={columns_}
         data={data}
