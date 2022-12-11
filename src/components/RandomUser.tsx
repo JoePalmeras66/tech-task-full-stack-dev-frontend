@@ -1,11 +1,11 @@
 import { useMemo } from "react";
 import { useQuery } from "react-query";
 import { Column } from "react-table";
+import { BasicReactTableProps } from "../Types/BasicReactTableProps";
 import { IRandomUser } from "../Types/RandomUserTypes";
+import BasicReactTable from "./BasicReactTable";
 
-import { RandomUserTable } from "./RandomUserTable";
-
-const columns: Column<IRandomUser>[] = [
+const columns: readonly Column<IRandomUser>[] = [
   {
     Header: 'First Name',
     accessor: 'first',
@@ -24,24 +24,25 @@ const columns: Column<IRandomUser>[] = [
   },
 ]
 
-const fetchRandomUsers = async (props: {country: string}): Promise<IRandomUser[]> => {
+const fetchRandomUsers = async (props: {country: string}): Promise<readonly IRandomUser[]> => {
   const response = await fetch(
     `http://localhost:8080/randomusers?country=${props.country}`
   );
   if (!response.ok) {
     throw new Error("Problem fetching 'IRandomUser[]'");
   }
-  const randomUsers: IRandomUser[] = await response.json();
+  const randomUsers: readonly IRandomUser[] = await response.json();
   return randomUsers;
 };
 
 const RandomUser = (props: {country: string}) => {
-  const columns_ = useMemo<Column<IRandomUser>[]>(
+
+  const columns_ = useMemo<readonly Column<IRandomUser>[]>(
     () => columns,
     []
   );
 
-  const { status, error, data, refetch } = useQuery<IRandomUser[], Error>(
+  const { status, error, data, refetch } = useQuery<readonly IRandomUser[], Error>(
     ["randomUsers", { country: props.country }],
     () => fetchRandomUsers({country: props.country})
   );
@@ -50,14 +51,16 @@ const RandomUser = (props: {country: string}) => {
   if (status === "error") return <div>{error!.message}</div>;
   if (data === undefined) return <div>RandomUsers undefined!!!</div>
 
-  const refetchData = () => refetch;
+  const randomUserTableProps: BasicReactTableProps<IRandomUser> = {
+    columns: columns_,
+    data: data,
+  }
 
   return (
     <>
-      <button onClick={refetchData}>Refetch</button>
-      <RandomUserTable
-        columns={columns_}
-        data={data}
+      <button onClick={() => refetch}>Refetch</button>
+      <BasicReactTable
+         {...randomUserTableProps}
       />
     </>
   );

@@ -1,10 +1,10 @@
 import { useTable } from 'react-table'
-import { SetUpTableProps } from '../Types/RandomUserTypes'
+import { IRandomUser, RandomUserTableProps } from '../Types/RandomUserTypes'
 
 import styles from "./RandomUserTable.module.scss"
 
-export const RandomUserTable = (props: SetUpTableProps) => {
-    const table = useTable({...props})
+export const RandomUserTable = (props: RandomUserTableProps<IRandomUser>) => {
+  const table = useTable<IRandomUser>({...props})
   return (
     <table className={styles.tableWrapper} {...table.getTableProps()}>
       <thead>
