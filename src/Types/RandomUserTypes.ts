@@ -1,13 +1,10 @@
-import { Column } from "react-table";
+import { Column, TableOptions } from "react-table";
+import { TDataType } from "./BasicReactTableProps";
 
-export interface IRandomUser {
+
+export interface IRandomUser extends TDataType {
     first: string;
     last: string;
     gender: string;
     email: string;
 }
-
-export interface SetUpTableProps {
-    columns: Column<IRandomUser>[],
-    data: IRandomUser[]
-  }
