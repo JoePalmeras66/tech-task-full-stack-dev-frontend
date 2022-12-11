@@ -46,7 +46,7 @@ const RandomUser = (props: {country: string}) => {
     () => fetchRandomUsers({country: props.country})
   );
 
-  if(data === undefined) return <div>Data undefined!!!</div>
+  if(data === undefined) return <div>RandomUsers undefined!!!</div>
 
   return (
     <>
