@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useQuery } from "react-query";
 import { DropdownList } from "react-widgets";
-import RandomUser from "./components/RandomUser";
+import { RandomUser } from "./components/RandomUser";
 
 import { fetchAllLocations } from "./services/location-service";
 
@@ -26,7 +26,7 @@ const App = () => {
           onChange={value => setValue(value)}
           data={data}
         />
-        <RandomUser country={value}/>
+        <RandomUser country={value} page={0} size={10}/>
     </>
   );
 }
