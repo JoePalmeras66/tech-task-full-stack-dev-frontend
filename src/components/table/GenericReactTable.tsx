@@ -5,9 +5,9 @@ import {
   TableOptions,
 } from '@tanstack/react-table'
 
-export interface GenericReactTableProps<TDataType extends object> extends TableOptions<TDataType>{
-  columns: ColumnDef<TDataType, string>[],
-  data: TDataType[],
+export interface GenericReactTableProps<TData extends object> extends TableOptions<TData>{
+  columns: ColumnDef<TData, string>[],
+  data: TData[],
 }
 
 export const GenericReactTable = <TDataType extends object>(props: GenericReactTableProps<TDataType>) => {

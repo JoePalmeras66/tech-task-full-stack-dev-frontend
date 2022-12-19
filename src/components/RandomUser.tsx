@@ -1,15 +1,44 @@
-import { ColumnDef, getCoreRowModel } from "@tanstack/react-table";
+import { ColumnDef, createColumnHelper, getCoreRowModel } from "@tanstack/react-table";
 import { useMemo } from "react";
 import { atom, useAtomValue, useSetAtom } from "jotai";
-import { columnsRandomUser, IRandomUser } from "../Types/RandomUserTypes";
 import { GenericReactTable, GenericReactTableProps } from "./table/GenericReactTable";
 import { atomsWithQuery } from "jotai-tanstack-query";
 
+export type IRandomUser = {
+  first: string;
+  last: string;
+  gender: string;
+  email: string;
+}
+
 export const RandomUser = (props: {country: string, page: number, size: number}) => {
 
+  const columnHelper = createColumnHelper<IRandomUser>()
+
   const columns = useMemo<ColumnDef<IRandomUser, string>[]>(
-    () => columnsRandomUser,
-    []
+    () => [
+      columnHelper.accessor('first', {
+         header: () =>'First Name',
+         cell: info => info.getValue(),
+         footer: info => info.column.id,
+       }),
+       columnHelper.accessor('last', {
+         header: () =>'Last Name',
+         cell: info => info.renderValue(),
+         footer: info => info.column.id,
+       }),
+       columnHelper.accessor('gender', {
+         header: () => 'Gender',
+         cell: info => info.renderValue(),
+         footer: info => info.column.id,
+       }),
+       columnHelper.accessor('email', {
+         header: () => 'E-Mail',
+         cell: info => info.renderValue(),
+         footer: info => info.column.id,
+       }),
+     ],
+    [columnHelper]
   );
 
   const countryAtom = atom<string>(props.country);
