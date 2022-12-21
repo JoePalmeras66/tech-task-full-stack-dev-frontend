@@ -2,7 +2,7 @@ import { Table } from "@tanstack/react-table";
 import { useSetAtom } from "jotai";
 import { pageIndexAtom, pageSizeAtom } from "../../services/randomusers-service";
 import { ShowPaginationStateGenericReactTable } from "./ShowPaginationStateGenericReactTable";
-import { ShowCountRowsGenericReactTable } from "./ShowCountRowsGenericReactTable";
+import { ShowCountRowsPaginationGenericReactTable } from "./ShowCountRowsPaginationGenericReactTable";
 
 export const PaginationGenericReactTable = <TDataType extends object>(props: {table: Table<TDataType>,
                                                                               showPagination?: boolean,
@@ -87,7 +87,7 @@ export const PaginationGenericReactTable = <TDataType extends object>(props: {ta
                     ))}
                 </select>
             </div>
-            <ShowCountRowsGenericReactTable {...props}/>
+            <ShowCountRowsPaginationGenericReactTable {...props}/>
             <ShowPaginationStateGenericReactTable {...props}/>
         </>
     )

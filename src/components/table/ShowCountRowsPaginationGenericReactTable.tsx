@@ -1,6 +1,6 @@
 import { Table } from "@tanstack/react-table";
 
-export const ShowCountRowsGenericReactTable = <TDataType extends object>(
+export const ShowCountRowsPaginationGenericReactTable = <TDataType extends object>(
     props: {table: Table<TDataType>, showCountRows?: boolean}
     ) => {
     const {showCountRows = false} = props;
