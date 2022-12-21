@@ -1,10 +1,14 @@
-import { IRandomUser } from "../services/randomuser-service"
+import { useAtom } from "jotai";
+import { loadableAsyncAllRandomUsersAtom } from "../services/randomuser-service";
 
-export const RandomUsersList = (props: {list: IRandomUser[]}) => {
+export const RandomUsersList = () => {
+  const [loadableData] = useAtom(loadableAsyncAllRandomUsersAtom);
+  if (loadableData.state === 'hasError') return <div>Error</div>;
+  if (loadableData.state === 'loading')  return <div>Loading...</div>
   return(
     <>
       <ul>
-        {props.list.map((r) => (
+        {loadableData.data.contents.map((r) => (
           <li key={r.email}>
             <p>{r.first} {r.last} {r.email}</p>
           </li>

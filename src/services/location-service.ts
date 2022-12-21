@@ -17,12 +17,12 @@ const [allLocationCountries] = atomsWithQuery<string[]>(() => ({
   queryFn: () => fetchAllLocations()
 }));
 
-export const locationCountriesAtom = atom((get) => {
+export const locationCountriesAtom = atom(async (get) => {
   const all = get(allLocationCountries);
   return all;
 });
 
-export const sortedLocationCountriesAtom = atom((get) => {
+export const sortedLocationCountriesAtom = atom(async (get) => {
   const sortedLocationCountries = get(locationCountriesAtom);
   return sortedLocationCountries.sort((a, b) => a.localeCompare(b));
 })

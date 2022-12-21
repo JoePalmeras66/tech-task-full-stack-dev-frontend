@@ -1,4 +1,5 @@
 import { atom } from "jotai";
+import { loadable } from "jotai/utils"
 import { atomsWithQuery } from "jotai-tanstack-query";
 
 export interface IRandomUser {
@@ -28,10 +29,12 @@ const [allRandomUsers] = atomsWithQuery<IRandomUserPageInfo>((get) => ({
     }
 }));
 
-export const allRandomUsersAtom = atom((get) => {
-    const filterCountry = get(filterCountryAtom);
-    const pageIndex = get(pageIndexAtom);
-    const pageSize = get(pageSizeAtom);
+const allRandomUsersAtom = atom(async (get) => {
     const all = get(allRandomUsers);
-    return {pageInfo: all, country: filterCountry, pageIndex: pageIndex, pageSize: pageSize };
+    return all;
 });
+
+export const loadableAsyncAllRandomUsersAtom = atom(async (get) => {
+    const loadableAsyncAll = get(loadable(allRandomUsersAtom));
+    return loadableAsyncAll;
+})
