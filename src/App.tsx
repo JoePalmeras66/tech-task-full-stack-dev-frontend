@@ -1,11 +1,11 @@
 import { SelectCountry } from "./components/dropdown/SelectCountry";
-import { RandomUserTable } from "./components/RandomUserTable";
+import { RandomUsersTable } from "./components/table/RandomUsersTable";
 
 const App = () => {
   return (
     <>
       <SelectCountry />
-      <RandomUserTable />
+      <RandomUsersTable />
     </>
   );
 }
