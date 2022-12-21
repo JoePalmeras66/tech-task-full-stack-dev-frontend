@@ -50,8 +50,8 @@ const fetchAllRandomUsersByCountry = async (country: string, page: number, size:
       if (!response.ok) {
         throw new Error("Problem fetching all RandomUsers");
       }
-      const randomusers: IRandomUserPageInfo = await response.json();
-      return randomusers;
+      const randomUserPageInfo: IRandomUserPageInfo = await response.json();
+      return randomUserPageInfo;
 }
 
 const [allRandomUsers] = atomsWithQuery<IRandomUserPageInfo>((get) => ({
