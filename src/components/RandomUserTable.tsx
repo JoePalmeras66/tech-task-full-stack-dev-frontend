@@ -4,7 +4,7 @@ import { useAtom } from "jotai";
 import { GenericReactTable, GenericReactTableProps } from "./table/GenericReactTable";
 import { IRandomUser, loadableAsyncAllRandomUsersAtom } from "../services/randomuser-service";
 
-export const RandomUser = () => {
+export const RandomUserTable = () => {
 
   const columnHelper = createColumnHelper<IRandomUser>()
 

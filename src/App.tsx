@@ -2,15 +2,15 @@
 import { Provider } from "jotai";
 import { Suspense } from 'react';
 import { SelectCountry } from "./components/dropdown/SelectCountry";
-import { RandomUsersList } from './components/RandomUsersList';
+import { RandomUserTable } from "./components/RandomUserTable";
 
 const App = () => {
   return (
     <>
       <Provider>
-        <Suspense fallback={<div>Loading something</div>}>
+        <Suspense fallback={<div>Loading Data</div>}>
           <SelectCountry />
-          <RandomUsersList />
+          <RandomUserTable />
         </Suspense>
       </Provider>
     </>
