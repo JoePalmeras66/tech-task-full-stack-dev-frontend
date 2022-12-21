@@ -1,18 +1,11 @@
-
-import { Provider } from "jotai";
-import { Suspense } from 'react';
 import { SelectCountry } from "./components/dropdown/SelectCountry";
-import { RandomUsersList } from './components/RandomUsersList';
+import { RandomUsersTable } from "./components/table/RandomUsersTable";
 
 const App = () => {
   return (
     <>
-      <Provider>
-        <Suspense fallback={<div>Loading something</div>}>
-          <SelectCountry />
-          <RandomUsersList />
-        </Suspense>
-      </Provider>
+      <SelectCountry />
+      <RandomUsersTable />
     </>
   );
 }

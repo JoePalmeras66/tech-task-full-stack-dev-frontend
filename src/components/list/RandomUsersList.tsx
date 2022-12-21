@@ -1,5 +1,5 @@
 import { useAtom } from "jotai";
-import { loadableAsyncAllRandomUsersAtom } from "../services/randomuser-service";
+import { loadableAsyncAllRandomUsersAtom } from "../../services/randomusers-service";
 
 export const RandomUsersList = () => {
   const [loadableData] = useAtom(loadableAsyncAllRandomUsersAtom);
