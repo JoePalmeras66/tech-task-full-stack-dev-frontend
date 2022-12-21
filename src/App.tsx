@@ -1,42 +1,11 @@
-import { useState } from "react";
-import { useQuery } from "react-query";
-import { DropdownList } from "react-widgets";
-import RandomUser from "./components/RandomUser";
-
-import "react-widgets/scss/styles.scss";
-
-const fetchLocations = async () => {
-  const response = await fetch(
-    `http://localhost:8080/locations`
-  );
-  if (!response.ok) {
-    throw new Error("Problem fetching all locations");
-  }
-  const locations: string[] = await response.json();
-  return locations;
-};
+import { SelectCountry } from "./components/dropdown/SelectCountry";
+import { RandomUsersTable } from "./components/table/RandomUsersTable";
 
 const App = () => {
-  const [value, setValue] = useState<string>("");
-
-  const { status, error, data } = useQuery<string[], Error>(
-    ["locations"],
-    () => fetchLocations()
-  );
-
-  if (status === "loading") return <div>Loading ...</div>;
-  if (status === "error") return <div>{error!.message}</div>;
-  if (data === undefined) return <div>Locations undefined!!!</div>
- 
   return (
     <>
-        <DropdownList
-          defaultValue="Germany"
-          value={value}
-          onChange={value => setValue(value)}
-          data={data}
-        />
-        <RandomUser country={value}/>
+      <SelectCountry />
+      <RandomUsersTable />
     </>
   );
 }

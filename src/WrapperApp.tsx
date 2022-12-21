@@ -1,12 +1,15 @@
-import { QueryClient, QueryClientProvider } from 'react-query'
-import App from './App'
+import { Provider } from 'jotai';
+import App from './App';
+import { Suspense } from 'react';
 
-const queryClient = new QueryClient()
-
-export default function WrapperApp() {
-   return (
-     <QueryClientProvider client={queryClient}>
-       <App />
-     </QueryClientProvider>
-   )
+export const WrapperApp = () => {
+    return(
+        <>
+            <Provider>
+                <Suspense fallback={<div>Loading Data</div>}>
+                    <App />
+                </Suspense>
+            </Provider>
+        </>
+    )
 }
