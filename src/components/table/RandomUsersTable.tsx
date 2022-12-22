@@ -3,8 +3,7 @@ import { useMemo } from "react";
 import { useAtom } from "jotai";
 import { GenericReactTable, GenericReactTableProps } from "./GenericReactTable";
 import { IRandomUser, columnsRandomUsers, loadableAsyncAllRandomUsersAtom } from "../../services/randomusers-service";
-/* import { RandomUserPagination } from "../pagination/RandomUserPagination";
- */
+
 export const RandomUsersTable = () => {
 
   const columns = useMemo<ColumnDef<IRandomUser, string>[]>(
@@ -36,7 +35,6 @@ export const RandomUsersTable = () => {
       <GenericReactTable
          {...randomUserTableProps}
       />
-{/*       <RandomUserPagination /> */}
     </>
   );
 };
