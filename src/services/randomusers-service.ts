@@ -8,6 +8,9 @@ export interface IRandomUser {
     last: string;
     gender: string;
     email: string;
+    country: string;
+    city: string;
+    state: string;
 }
 
 export interface IRandomUserPageInfo {
@@ -35,6 +38,18 @@ export const columnsRandomUsers = [
     }),
     columnHelper.accessor('email', {
         header: () => 'E-Mail',
+        cell: info => info.renderValue(),
+    }),
+    columnHelper.accessor('country', {
+        header: () => 'Country',
+        cell: info => info.renderValue(),
+    }),
+    columnHelper.accessor('city', {
+        header: () => 'City',
+        cell: info => info.renderValue(),
+    }),
+    columnHelper.accessor('state', {
+        header: () => 'State',
         cell: info => info.renderValue(),
     }),
 ]
