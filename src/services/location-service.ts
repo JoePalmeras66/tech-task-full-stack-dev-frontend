@@ -3,10 +3,10 @@ import { atomsWithQuery } from "jotai-tanstack-query";
 
 const fetchAllLocations = async () => {
     const response = await fetch(
-      `http://localhost:8080/locations`
+      `http://localhost:8080/techtask/api/v1/location/countries`
     );
     if (!response.ok) {
-      throw new Error("Problem fetching all locations");
+      throw new Error("Problem fetching all countries");
     }
     const locations: string[] = await response.json();
     return locations;
