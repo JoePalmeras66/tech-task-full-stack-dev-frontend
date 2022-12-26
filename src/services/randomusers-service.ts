@@ -8,6 +8,9 @@ export interface IRandomUser {
     last: string;
     gender: string;
     email: string;
+    country: string;
+    city: string;
+    state: string;
 }
 
 export interface IRandomUserPageInfo {
@@ -37,6 +40,18 @@ export const columnsRandomUsers = [
         header: () => 'E-Mail',
         cell: info => info.renderValue(),
     }),
+    columnHelper.accessor('country', {
+        header: () => 'Country',
+        cell: info => info.renderValue(),
+    }),
+    columnHelper.accessor('city', {
+        header: () => 'City',
+        cell: info => info.renderValue(),
+    }),
+    columnHelper.accessor('state', {
+        header: () => 'State',
+        cell: info => info.renderValue(),
+    }),
 ]
 
 export const filterCountryAtom = atom<string>("Germany");
@@ -45,7 +60,7 @@ export const pageSizeAtom = atom<number>(10);
 
 const fetchAllRandomUsersByCountry = async (country: string, page: number, size: number) => {
     const response = await fetch(
-        `http://localhost:8080/api/v1/randomusers/all?country=${country}&page=${page}&size=${size}`
+        `http://localhost:8080/techtask/api/v1/randomusers/all?country=${country}&page=${page}&size=${size}`
       );
       if (!response.ok) {
         throw new Error("Problem fetching all RandomUsers");
