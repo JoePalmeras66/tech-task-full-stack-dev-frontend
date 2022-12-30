@@ -27,7 +27,8 @@ export const RandomUsersTable = () => {
       }
     },
     getCoreRowModel: getCoreRowModel(),
-    getPaginationRowModel: getPaginationRowModel()
+    // getPaginationRowModel: getPaginationRowModel(), // If only doing manual pagination, you don't need this
+    debugTable: false,
   }
 
   return (
