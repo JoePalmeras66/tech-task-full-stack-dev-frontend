@@ -75,7 +75,7 @@ const fetchAllRandomUsersByCountry = async (country: string,
     return randomUserPageInfo;
 }
 
-const [allRandomUsers] = atomsWithQuery<IRandomUserPageInfo>((get) => ({
+export const [allRandomUsers] = atomsWithQuery<IRandomUserPageInfo>((get) => ({
     queryKey: ["allRandomUsers", get(filterCountryAtom), get(filterStateAtom), get(filterCityAtom), get(pageIndexAtom), get(pageSizeAtom)],
     queryFn: () => fetchAllRandomUsersByCountry(get(filterCountryAtom), 
                                                 get(filterStateAtom), 
@@ -84,7 +84,7 @@ const [allRandomUsers] = atomsWithQuery<IRandomUserPageInfo>((get) => ({
                                                 get(pageSizeAtom))
 }));
 
-const allRandomUsersAtom = atom(async (get) => {
+export const allRandomUsersAtom = atom(async (get) => {
     const all = get(allRandomUsers);
     return all;
 });

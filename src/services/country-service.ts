@@ -13,7 +13,7 @@ const fetchAllCountries = async () => {
     return countries;
 };
 
-const [allCountries] = atomsWithQuery<string[]>(() => ({
+export const [allCountries] = atomsWithQuery<string[]>(() => ({
   queryKey: ["allCountries"],
   queryFn: () => fetchAllCountries()
 }));

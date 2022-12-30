@@ -14,7 +14,7 @@ const fetchAllState = async (country: string) => {
     return states;
 };
 
-const [allState] = atomsWithQuery<string[]>((get) => ({
+export const [allState] = atomsWithQuery<string[]>((get) => ({
   queryKey: ["allState", get(filterCountryAtom)],
   queryFn: () => fetchAllState(get(filterCountryAtom))
 }));
