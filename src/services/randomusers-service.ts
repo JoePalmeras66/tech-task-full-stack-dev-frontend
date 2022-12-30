@@ -54,8 +54,8 @@ export const columnsRandomUsers = [
     }),
 ]
 
-export const filterCountryAtom = atom<string>("Germany");
-export const filterStateAtom = atom<string>("Bayern");
+export const filterCountryAtom = atom<string>("");
+export const filterStateAtom = atom<string>("");
 export const pageIndexAtom = atom<number>(0);
 export const pageSizeAtom = atom<number>(10);
 
