@@ -56,23 +56,32 @@ export const columnsRandomUsers = [
 
 export const filterCountryAtom = atom<string>("");
 export const filterStateAtom = atom<string>("");
+export const filterCityAtom = atom<string>("");
 export const pageIndexAtom = atom<number>(0);
 export const pageSizeAtom = atom<number>(10);
 
-const fetchAllRandomUsersByCountry = async (country: string, state: string, page: number, size: number) => {
+const fetchAllRandomUsersByCountry = async (country: string, 
+                                            state: string, 
+                                            city: string, 
+                                            page: number, 
+                                            size: number) => {
     const response = await fetch(
-        `http://localhost:8080/techtask/api/v1/randomusers/all?country=${country}&state=${state}&page=${page}&size=${size}`
-      );
-      if (!response.ok) {
+        `http://localhost:8080/techtask/api/v1/randomusers/all?country=${country}&state=${state}&city=${city}&page=${page}&size=${size}`
+    );
+    if (!response.ok) {
         throw new Error("Problem fetching all RandomUsers");
-      }
-      const randomUserPageInfo: IRandomUserPageInfo = await response.json();
-      return randomUserPageInfo;
+    }
+    const randomUserPageInfo: IRandomUserPageInfo = await response.json();
+    return randomUserPageInfo;
 }
 
 const [allRandomUsers] = atomsWithQuery<IRandomUserPageInfo>((get) => ({
-    queryKey: ["allRandomUsers", get(filterCountryAtom), get(filterStateAtom),  get(pageIndexAtom), get(pageSizeAtom)],
-    queryFn: () => fetchAllRandomUsersByCountry(get(filterCountryAtom), get(filterStateAtom), get(pageIndexAtom), get(pageSizeAtom))
+    queryKey: ["allRandomUsers", get(filterCountryAtom), get(filterStateAtom), get(filterCityAtom), get(pageIndexAtom), get(pageSizeAtom)],
+    queryFn: () => fetchAllRandomUsersByCountry(get(filterCountryAtom), 
+                                                get(filterStateAtom), 
+                                                get(filterCityAtom), 
+                                                get(pageIndexAtom), 
+                                                get(pageSizeAtom))
 }));
 
 const allRandomUsersAtom = atom(async (get) => {
