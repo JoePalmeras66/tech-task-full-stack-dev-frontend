@@ -55,12 +55,13 @@ export const columnsRandomUsers = [
 ]
 
 export const filterCountryAtom = atom<string>("Germany");
+export const filterStateAtom = atom<string>("Bayern");
 export const pageIndexAtom = atom<number>(0);
 export const pageSizeAtom = atom<number>(10);
 
-const fetchAllRandomUsersByCountry = async (country: string, page: number, size: number) => {
+const fetchAllRandomUsersByCountry = async (country: string, state: string, page: number, size: number) => {
     const response = await fetch(
-        `http://localhost:8080/techtask/api/v1/randomusers/all?country=${country}&page=${page}&size=${size}`
+        `http://localhost:8080/techtask/api/v1/randomusers/all?country=${country}&state=${state}&page=${page}&size=${size}`
       );
       if (!response.ok) {
         throw new Error("Problem fetching all RandomUsers");
@@ -70,8 +71,8 @@ const fetchAllRandomUsersByCountry = async (country: string, page: number, size:
 }
 
 const [allRandomUsers] = atomsWithQuery<IRandomUserPageInfo>((get) => ({
-    queryKey: ["allRandomUsers", get(filterCountryAtom),  get(pageIndexAtom), get(pageSizeAtom)],
-    queryFn: () => fetchAllRandomUsersByCountry(get(filterCountryAtom), get(pageIndexAtom), get(pageSizeAtom))
+    queryKey: ["allRandomUsers", get(filterCountryAtom), get(filterStateAtom),  get(pageIndexAtom), get(pageSizeAtom)],
+    queryFn: () => fetchAllRandomUsersByCountry(get(filterCountryAtom), get(filterStateAtom), get(pageIndexAtom), get(pageSizeAtom))
 }));
 
 const allRandomUsersAtom = atom(async (get) => {
