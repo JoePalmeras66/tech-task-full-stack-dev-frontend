@@ -1,11 +1,11 @@
 import { useAtom } from "jotai";
-import { sortedLocationCountriesAtom } from "../../services/location-service";
+import { sortedCountriesAtom } from "../../services/country-service";
 import GenericCustomSelect from "./GenericCustomSelect";
 import { filterCountryAtom } from "../../services/randomusers-service";
 
 export const SelectCountry = () => {
     const [country, setCountry] = useAtom(filterCountryAtom);
-    const [countries] = useAtom(sortedLocationCountriesAtom);
+    const [countries] = useAtom(sortedCountriesAtom);
     return (
         <>
             <GenericCustomSelect 
