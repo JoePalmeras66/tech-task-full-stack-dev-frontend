@@ -2,8 +2,6 @@ import { atom } from "jotai";
 import { atomsWithQuery } from "jotai-tanstack-query";
 import { filterCountryAtom } from "./randomusers-service";
 
-export const filterStateAtom = atom<string>("");
-
 const fetchAllState = async (country: string) => {
     const response = await fetch(
       `http://localhost:8080/techtask/api/v1/location/states?country=${country}`
