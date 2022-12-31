@@ -25,8 +25,8 @@ export const TechTaskResponsiveGridLayout = () => {
             cols={{ randomusersT: 12, countriesDD: 2, statesDD: 2, citiesDD: 2 }}
         >
             <div key="1"><SelectCountry /></div>
-            <div key="2"><SelectState /></div>
-            <div key="3"><SelectCity /></div>
+            <div key="2"><SelectCity /></div>
+            <div key="3"><SelectState /></div>
             <div key="4"><RandomUsersTable /></div>
         </ResponsiveGridLayout>
       </>
