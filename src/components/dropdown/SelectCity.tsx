@@ -6,7 +6,6 @@ import { sortedCitiesAtom } from "../../services/city-service";
 export const SelectCity = () => {
     const [city, setCity] = useAtom(filterCityAtom);
     const [cities] = useAtom(sortedCitiesAtom);
-    console.log(cities);
     return (
         <>
            <GenericCustomSelect 
