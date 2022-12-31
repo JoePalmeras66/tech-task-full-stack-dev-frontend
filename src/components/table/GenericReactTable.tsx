@@ -6,7 +6,6 @@ import {
 import { HeaderGenericReactTable } from './HeaderGenericReactTable';
 import { BodyGenericReactTable } from './BodyGenericReactTable';
 import { PaginationGenericReactTable } from './PaginationGenericReactTable';
-/* import { FooterGenericReactTable } from './FooterGenericReactTable'; */
 
 export interface GenericReactTableProps<TData extends object> extends TableOptions<TData>{
   columns: ColumnDef<TData, string>[],
@@ -20,9 +19,10 @@ export const GenericReactTable = <TDataType extends object>(props: GenericReactT
       <table>
         <HeaderGenericReactTable table={table}/>
         <BodyGenericReactTable table={table}/>
-        <PaginationGenericReactTable table={table} />
-        {/* <FooterGenericReactTable table={table}/> */}
       </table>
+
+      {/* NO children of <table>{children}</table> */}
+      <PaginationGenericReactTable table={table} /> 
     </>
     )
 };

@@ -1,11 +1,9 @@
-import { SelectCountry } from "./components/dropdown/SelectCountry";
-import { RandomUsersTable } from "./components/table/RandomUsersTable";
+import { TechTaskResponsiveGridLayout } from "./components/layouts/TechTaskResponsiveGridLayout";
 
 const App = () => {
   return (
-    <>
-      <SelectCountry />
-      <RandomUsersTable />
+    <>     
+      <TechTaskResponsiveGridLayout />
     </>
   );
 }
