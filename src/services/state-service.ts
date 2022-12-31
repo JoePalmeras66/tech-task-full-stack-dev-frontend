@@ -2,12 +2,12 @@ import { atom } from "jotai";
 import { atomsWithQuery } from "jotai-tanstack-query";
 import { filterCityAtom, filterCountryAtom } from "./randomusers-service";
 
-const fetchAllState = async (country: string, city: string) => {
+const fetchAllStates = async (country: string, city: string) => {
     const response = await fetch(
       `http://localhost:8080/techtask/api/v1/location/states?country=${country}&city=${city}`
     );
     if (!response.ok) {
-      throw new Error("Problem fetching all countries");
+      throw new Error("Problem fetching all states");
     }
     const states: string[] = await response.json();
     states.push("");
@@ -16,7 +16,7 @@ const fetchAllState = async (country: string, city: string) => {
 
 export const [allState] = atomsWithQuery<string[]>((get) => ({
   queryKey: ["allState", get(filterCountryAtom), get(filterCityAtom)],
-  queryFn: () => fetchAllState(get(filterCountryAtom), get(filterCityAtom))
+  queryFn: () => fetchAllStates(get(filterCountryAtom), get(filterCityAtom))
 }));
 
 export const stateAtom = atom(async (get) => {

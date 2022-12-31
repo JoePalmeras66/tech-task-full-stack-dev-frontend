@@ -9,9 +9,9 @@ const fetchAllCities = async (country: string, state: string) => {
     if (!response.ok) {
       throw new Error("Problem fetching all cities");
     }
-    const states: string[] = await response.json();
-    states.push("");
-    return states;
+    const cities: string[] = await response.json();
+    cities.push("");
+    return cities;
 };
 
 const [allCities] = atomsWithQuery<string[]>((get) => ({
